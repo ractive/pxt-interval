@@ -21,6 +21,22 @@ const unsubscribe = Interval.on(500, () => sprites.createProjectileFromSprite(my
 setTimeout(() => unsubscribe(), 3000);
 ```
 
+Another example that lets a spaceship shoot until it's getting destroyed:
+```
+const spaceShip = sprites.create(someSpaceshipImage);
+spaceShip.setFlag(SpriteFlag.AutoDestroy, true);
+
+const unsubscribe = Interval.on(500, () => {
+    sprites.createProjectileFromSprite(img`
+    1
+    1
+    `, spaceShip, 0, -80);
+});
+
+spaceShip.vx = 30;
+spaceShip.onDestroyed(() => unsubscribe());
+```
+
 ## Using it in your project
 
 To use this extension in your project, choose "Advanced > Extensions..." and enter `https://github.com/ractive/pxt-interval` in the search box.
