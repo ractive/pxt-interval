@@ -25,6 +25,8 @@ setTimeout(() => unsubscribe(), 3000);
 
 To use this extension in your project, choose "Advanced > Extensions..." and enter `https://github.com/ractive/pxt-interval` in the search box.
 
+This extension uses the [pxt-heap](https://github.com/jwunderl/pxt-heap) extension to easily fetch the next callback handler that should be executed.
+
 #### Metadata
 
 * for PXT/arcade
