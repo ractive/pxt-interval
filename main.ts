@@ -47,14 +47,15 @@
     export function on(interval: number, f: () => void): () => void {
         init();
 
-        nextExecutionHeap.push({id: id++, t: game.runtime() + interval, interval, f});
+        const thisId = id++;
+        nextExecutionHeap.push({id: thisId, t: game.runtime() + interval, interval, f});
 
         // return a function that removes this callback
         return () => {
             const newHeap = createHeap();
             while (nextExecutionHeap.length()) {
                 const execution = nextExecutionHeap.pop();
-                if (execution.id !== id) {
+                if (execution.id !== thisId) {
                     newHeap.push(execution);
                 }
             }
@@ -63,4 +64,5 @@
     }
 
 }
+
 
