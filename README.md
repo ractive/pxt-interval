@@ -1,31 +1,31 @@
 
-> Diese Seite bei [https://ractive.github.io/pxt-interval/](https://ractive.github.io/pxt-interval/) öffnen
+# pxt-interval ![Build Status Abzeichen](https://github.com/ractive/pxt-interval/workflows/MakeCode/badge.svg)
 
-## Als Erweiterung verwenden
+If you want to repeatedly do something in your game, you can add a callback method to `game.onUpdateInterval` like
+`game.onUpdateInterval(500, () => doSomething())`. But you cannot unsubscribe this callback from being executed - never.
 
-Dieses Repository kann als **Erweiterung** in MakeCode hinzugefügt werden.
+If you want to do something periodically but only for a certain time, this extension can help you. A callback handler
+that is registered to be executed in a given interval can also be unsubscribed again. The call to `Interval.on` returns
+a function that can be called to do the unsubscription:
 
-* öffne [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* klicke auf **Neues Projekt**
-* klicke auf **Erweiterungen** unter dem Zahnrad-Menü
-* nach **https://github.com/ractive/pxt-interval** suchen und importieren
+```
+const unsubscribe = Interval.on(500, () => doSomething());
+...
+unsubscribe();
+```
 
-## Dieses Projekt bearbeiten ![Build Status Abzeichen](https://github.com/ractive/pxt-interval/workflows/MakeCode/badge.svg)
+Here an example how to fire projectiles every 500 milliseconds for 3 seconds:
+```
+// Shoot for 3 seconds
+const unsubscribe = Interval.on(500, () => sprites.createProjectileFromSprite(myImage, mySprite, 50, 0));
+setTimeout(() => unsubscribe(), 3000);
+```
 
-Um dieses Repository in MakeCode zu bearbeiten.
+## Using it in your project
 
-* öffne [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* klicke auf **Importieren** und dann auf **Importiere URL**
-* füge **https://github.com/ractive/pxt-interval** ein und klicke auf Importieren
+To use this extension in your project, choose "Advanced > Extensions..." and enter `https://github.com/ractive/pxt-interval` in the search box.
 
-## Blockvorschau
-
-Dieses Bild zeigt den Blockcode vom letzten Commit im Master an.
-Die Aktualisierung dieses Bildes kann einige Minuten dauern.
-
-![Eine gerenderte Ansicht der Blöcke](https://github.com/ractive/pxt-interval/raw/master/.github/makecode/blocks.png)
-
-#### Metadaten (verwendet für Suche, Rendering)
+#### Metadata
 
 * for PXT/arcade
 <script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
