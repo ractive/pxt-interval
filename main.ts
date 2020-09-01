@@ -53,7 +53,7 @@
         // return a function that removes this callback
         return () => {
             const newHeap = createHeap();
-            while (nextExecutionHeap.length()) {
+            while (nextExecutionHeap.length) {
                 const execution = nextExecutionHeap.pop();
                 if (execution.id !== thisId) {
                     newHeap.push(execution);
